@@ -1,0 +1,75 @@
+@charset 'utf-8';
+
+* {
+    margin: 0px;
+}
+
+body {
+    margin: 50px;
+}
+
+h1{
+    font-size : 110%;
+    padding: 0.4em 0.5em;
+    color: #494949;
+    background: #fffaf4;
+    border-left: solid 5px #ffaf58;
+    border-bottom: solid 3px #d7d7d7;
+    display: inline-block;
+}
+
+h2{
+    font-size : 100%;
+    padding: 0.5em;
+    color: #494949;
+    background: #f4f4f4;
+    border-left: solid 5px #7db4e6;
+    display: inline-block;
+}
+
+@media (min-width: 1000px) {
+    #parent {
+        display: flex;
+        width: 100%;
+    }
+    #child1 {
+        flex-grow: 1;
+        width: 45%;
+    }
+    #child2 {
+        flex-grow: 1;
+        width: 55%;
+    }
+}
+
+label[for="file_button"] {
+    padding: 5px 12.5px;
+    margin: 0 0 5px;
+    color: white;
+    background-color: #aaa;
+    display: inline-block;
+}
+
+label[for="submit_button"] {
+    padding: 5px 12.5px;
+    margin: 0 0 5px;
+    color: white;
+    background-color: #aaa;
+    display: inline-block;
+}
+
+.selection-group label img {
+    margin: 2px;
+    padding: 5px;
+    height: 70px;
+}
+.selection-group input[type="radio"] {
+    display: none;
+}
+.selection-group input[type="radio"] + label img {
+    opacity: 0.2;
+}
+.selection-group input[type="radio"]:checked + label img {
+    opacity: 1;
+    background: #aaa;
+}

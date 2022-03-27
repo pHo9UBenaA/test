@@ -1,0 +1,77 @@
+{% extends "template.html" %}}
+{% block body %}
+    <form action="{{ url_for('post') }}" method=post enctype="multipart/form-data">
+        <h1>画風変換アプリケーション</h1><br><br>
+        <div id="parent">
+            <div id="child1">
+                <h2>1.アップロードする画像を選択してください：</h2><br>
+                <input type="file" id="file_button"  name="img_file" accept=".jpg, .jpeg" style="display:none;" class="file">
+                <label for="file_button" class="file">ファイルを選択</label><br>
+                <div class="filename">ファイルが選択されていません</div><br>
+                
+                <div class="selection-group">
+                    <h2>2.モデルを選択してください：</h2><br>
+                    <input type="radio" id="a" name="radio" value="candy.pth" checked="checked">
+                    <label for="a"><img src="/static/image/candy.jpg"></label>
+                    <input type="radio" id="b" name="radio" value="mosaic.pth">
+                    <label for="b"><img src="/static/image/mosaic.jpg"></label>
+                    <input type="radio" id="c" name="radio" value="night.pth">
+                    <label for="c"><img src="/static/image/night.jpg"></label>
+                    <input type="radio" id="d" name="radio" value="rain_princess.pth">
+                    <label for="d"><img src="/static/image/rain-princess.jpg"></label>
+                    <input type="radio" id="e" name="radio" value="udnie.pth">
+                    <label for="e"><img src="/static/image/udnie.jpg"></label>
+                </div><br>
+                
+                <div id="content">
+                    <h2>3.送信ボタンを押してください：</h2><br>
+                    <input type="submit" name="submit" value="送信" id="submit_button" onclick="loading();" style="display:none;">
+                    <label for="submit_button">送信</label><br>
+                </div>
+                
+                <div id="loading" hidden>
+                    <p>読み込み中です。１分ほどお待ちください。</p>
+                    <p>数分経っても処理が終了しない場合は、担当へお声がけください。</p>
+                    <img src="/static/image/Loading.gif" height=40px>
+                </div><br>
+                
+                {% if message %}
+                    <div id="message">
+                        <p>{{message}}</p>
+                    </div>
+                {% endif %}
+                
+                {% if result_img %}
+                    <div id="result_img">
+                        <img id="result_img" src={{result_img}}>
+                    </div>
+                {% endif %}
+            </div><br><br>
+
+            <div id="child2">
+		<h2>このアプリの説明：</h2>
+                <p>アップロード画像をモデルに似せて出力するアプリケーションです。</p>
+                <p>アップロード画像の輪郭と選択したモデルの画風を併せ持った画像が出力されます。</p>
+                <img src="/static/image/embedded1.jpg" width=600px><br><br>
+                
+                <h2>使い方：</h2>
+                <p>写真撮影（または選択）、モデルの選択、送信を行ってください。</p>
+                <img src="/static/image/embedded2.jpg" width=600px><br>
+                
+                <h2>制限・免責：</h2>
+                <p>アップロードできる画像の形式はJPGまたはJPEGのみ、アップロードサイズは8MBに制限しています。
+                また、変換後の画像の長辺は512pxになるように縮小されます。
+                これは、高解像度の画像に対して、変換画像を出力するまでに時間がかかるためです。</p>
+                <p>このサービスではアップロードした画像を保存・削除する処理が瞬間的に働いており、プログラムが不完全に停止した場合に画像がサーバ上に残る可能性があります。
+                本校はこのサービスを利用して起こった不利益（画像の流出など）に関しては責任を負いません。</p><br>
+                
+                <h2>このアプリを作成する際に使用させていただいたニューラルネットワークに関する論文：</h2>
+                <p>Justin Johnson, Alexandre Alahi, Li Fei-Fei, ”Perceptual Losses for Real-Time StyleTransfer and Super-Resolution,” ECCV2016.</p>
+            </div>
+        </div>
+    </form><br>
+    <small>&copy;2020 Oita Institute of Technology All rights reserved.
+    本ウェブサイトに掲載されている全てのコンテンツの著作権は、原則、本学に帰属します。無断複製転載改変等は禁止します。</small>
+{% endblock %}
+
+
